@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Windows.Controls;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Debugger.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using VsNerdX.Util;
@@ -44,6 +45,26 @@ namespace VsNerdX.Core
             }
 
         }
+        public void GoPageUp(bool halfPage)
+        {
+            var listBox = GetHierarchyListBox();
+            if (listBox == null || listBox.Items.Count == 0) return;
+            var index = listBox.Items.IndexOf(listBox.SelectedItem) - (halfPage ? 8 : 16);
+            if (index < 0) index = 0;
+
+            listBox.SelectedItem = listBox.Items.GetItemAt(index);
+            EnsureSelection();
+        }
+        public void GoPageDown(bool halfPage)
+        {
+            var listBox = GetHierarchyListBox();
+            if (listBox == null || listBox.Items.Count == 0) return;
+            var index = listBox.Items.IndexOf(listBox.SelectedItem) + (halfPage ? 8 : 16);
+            if (index >= listBox.Items.Count) index = listBox.Items.Count - 1;
+
+            listBox.SelectedItem = listBox.Items.GetItemAt(index);
+            EnsureSelection();
+        }
 
         public void GoToFirstChild()
         {
@@ -79,6 +100,32 @@ namespace VsNerdX.Core
             EnsureSelection();
         }
 
+        public void GoToFirstOrLastChild()
+        {
+            var listBox = GetHierarchyListBox();
+            var item = listBox.SelectedItem;
+
+            if (item == null) return;
+            
+            var parent = item.GetType().GetProperty("Parent")?.GetValue(item);
+            if (parent == null) return;
+
+            var childNodes = parent.GetType().GetProperty("ChildNodes").GetValue(parent);
+            if (childNodes == null) return;
+
+            var childNodeObjects = ((IEnumerable)childNodes).Cast<Object>().ToList();
+
+            if (listBox.SelectedItem == childNodeObjects.Last())
+            {
+                listBox.SelectedItem = childNodeObjects.First();
+            }
+            else
+            {
+                listBox.SelectedItem = childNodeObjects.Last();
+            }
+            EnsureSelection();
+        }
+
         public void GoToParent()
         {
             var listBox = GetHierarchyListBox();
@@ -96,9 +143,20 @@ namespace VsNerdX.Core
         public void CloseParentNode()
         {
             GoToParent();
-            var parent = GetHierarchyListBox().SelectedItem;
-            parent.GetType().GetProperty("IsExpanded")
-                ?.SetValue(parent, false);
+            var item = GetHierarchyListBox().SelectedItem;
+
+            if (item == null) return;
+
+            item.GetType().GetProperty("IsExpanded")?.SetValue(item, false);
+        }
+
+        public void CloseNode()
+        {
+            var item = GetHierarchyListBox().SelectedItem;
+
+            if (item == null) return;
+
+            item.GetType().GetProperty("IsExpanded")?.SetValue(item, false);
         }
 
         public void OpenOrCloseNode()
@@ -111,6 +169,17 @@ namespace VsNerdX.Core
             if (expandable != true) return;
 
             item.GetType().GetProperty("IsExpanded")?.SetValue(item, expanded != true);
+        }
+        public void OpenNode()
+        {
+            var listBox = GetHierarchyListBox();
+            var item = listBox.SelectedItem;
+            var expandable = (bool?)item.GetType().GetProperty("IsExpandable")?.GetValue(item);
+            var expanded = (bool?)item.GetType().GetProperty("IsExpanded")?.GetValue(item);
+
+            if (expandable != true || expanded == true) return;
+
+            item.GetType().GetProperty("IsExpanded")?.SetValue(item, true);
         }
 
         public Object GetSelectedItem()

@@ -71,17 +71,23 @@ namespace VsNerdX.Core
 
         private void InitializeCommands()
         {
-            commands.Add(new CommandKey(InputMode.Normal, Keys.X), new CloseParentNode(this._hierarchyControl));
-            commands.Add(new CommandKey(InputMode.Normal, Keys.O), new OpenOrCloseNode(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.X), new CloseParentNode(this._hierarchyControl));    // CloseParentNode could be a proper action of key 'h' for some users
+            commands.Add(new CommandKey(InputMode.Normal, Keys.J | Keys.Shift), new CloseNode(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.L), new OpenNode(this._hierarchyControl));
             commands.Add(new CommandKey(InputMode.Normal, Keys.O | Keys.Shift), new OpenNodeRecursively(this._hierarchyControl));
             commands.Add(new CommandKey(InputMode.Normal, Keys.X | Keys.Shift), new CloseNodeRecursively(this._hierarchyControl));
 
             commands.Add(new CommandKey(InputMode.Normal, Keys.J), new GoDown(this._hierarchyControl));
-            commands.Add(new CommandKey(InputMode.Normal, Keys.J | Keys.Shift), new GoToLastChild(this._hierarchyControl));
             commands.Add(new CommandKey(InputMode.Normal, Keys.K), new GoUp(this._hierarchyControl));
-            commands.Add(new CommandKey(InputMode.Normal, Keys.K | Keys.Shift), new GoToFirtsChild(this._hierarchyControl));
-            commands.Add(new CommandKey(InputMode.Normal, Keys.P | Keys.Shift), new GoToParent(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.F | Keys.Control), new GoPageDown(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.D | Keys.Control), new GoPageDownHalf(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.B | Keys.Control), new GoPageUp(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.U | Keys.Control), new GoPageUpHalf(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.K | Keys.Shift), new GoToFirstChild(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.D5 | Keys.Shift), new GoToFirstOrLastChild(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.H), new GoToParent(this._hierarchyControl));
             commands.Add(new CommandKey(InputMode.Normal, Keys.G | Keys.Shift), new GoToBottom(this._hierarchyControl));
+            commands.Add(new CommandKey(InputMode.Normal, Keys.H | Keys.Shift), new GoToTop(this._hierarchyControl));
 
             commands.Add(new CommandKey(InputMode.Normal, Keys.G), new EnterGoMode(CommandState.Handled));
             commands.Add(new CommandKey(InputMode.Go, Keys.G), new GoToTop(this._hierarchyControl));

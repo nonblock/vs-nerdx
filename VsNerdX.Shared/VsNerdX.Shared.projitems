@@ -11,8 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Command\CommandKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\CommandState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\CloseNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\CloseNodeRecursively.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\CloseParentNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\OpenNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\OpenNodeRecursively.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Directory\OpenOrCloseNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\ExecutionContext.cs" />
@@ -38,8 +40,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Command\IExecutionContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\InputMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoDown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageDown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageDownHalf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageUp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageUpHalf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToBottom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToFirstChild.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToFirstOrLastChild.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToLastChild.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToParent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToRoot.cs" />

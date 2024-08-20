@@ -4,13 +4,19 @@
     {
         void GoUp();
         void GoDown();
+        void GoPageUp(bool halfPage);
+        void GoPageDown(bool halfPage);
+
         void GoToTop();
         void GoToBottom();
         void GoToParent();
         void GoToFirstChild();
         void GoToLastChild();
+        void GoToFirstOrLastChild();
         void CloseParentNode();
+        void CloseNode();
         void OpenOrCloseNode();
+        void OpenNode();
         void ToggleHelp();
         object GetSelectedItem();
     }
