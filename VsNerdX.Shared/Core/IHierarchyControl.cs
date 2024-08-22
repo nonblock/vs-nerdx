@@ -10,7 +10,8 @@
         void GoToTop();
         void GoToBottom();
         void GoToParent();
-        void GoToFirstChild();
+        void GoToParentOrCloseNode();
+        void GoToChildOrOpenNode();
         void GoToLastChild();
         void GoToFirstOrLastChild();
         void CloseParentNode();

@@ -45,10 +45,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageUp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoPageUpHalf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToBottom.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToFirstChild.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToChildOrOpenNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToFirstOrLastChild.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToLastChild.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToParent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToParentOrCloseNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToRoot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoToTop.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command\Navigation\GoUp.cs" />

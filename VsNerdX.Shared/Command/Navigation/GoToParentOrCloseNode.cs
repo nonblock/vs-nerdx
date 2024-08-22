@@ -3,18 +3,18 @@ using VsNerdX.Core;
 
 namespace VsNerdX.Command.Navigation
 {
-    public class GoToFirstChild : ICommand
+    public class GoToParentOrCloseNode : ICommand
     {
         private IHierarchyControl _hierarchyControl;
 
-        public GoToFirstChild(IHierarchyControl hierarchyControl)
+        public GoToParentOrCloseNode(IHierarchyControl hierarchyControl)
         {
             this._hierarchyControl = hierarchyControl;
         }
 
         public ExecutionResult Execute(IExecutionContext executionContext, Keys key)
         {
-            this._hierarchyControl.GoToFirstChild();
+            this._hierarchyControl.GoToParentOrCloseNode();
             return new ExecutionResult(executionContext.Clear(), CommandState.Handled);
         }
     }

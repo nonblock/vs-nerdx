@@ -1,21 +1,32 @@
 # VsNerdX (2.4.0)
 [NERDTree](https://github.com/scrooloose/nerdtree) inspired Solution Explorer for Visual Studio. It integrates VIM bindings for tree navigation and manipulation into Visual Studio's hierarchy windows.
 
+### Fork : Youngjoon Kim (nonblock@gmail.com)
+[nonblock/vs-nerdx](https://github.com/nonblock/vs-nerdx)
+
+Modified many shortcuts and actions in a more intuitive way as a nerd using VIM for 25+ years.
+
 # Install
-Follow the instructions on **[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=mstevius.vs-nerdx-solution-explorer)** or use **Tools / Extensions and Updates**
-
 If building from source, use the resulting `VsNerdX.vsix`.
-
 Currently supported Visual Studio versions are 2017, 2019, and 2022. 
 
 # Usage
-#### Directory node mappings
-* `o` - open & close node
-* `O` - recursively open node
-* `x` - close parent of node
-* `X` - close all child nodes  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of current node recursively
+#### Navigation
+* `j` - go up
+* `k` - go down
+* `h` - go to parent or fold (much like left arrow)
+* `l` - unfold or go to the first child (much like right arrow)
+* `ctrl+b` - 16 lines up
+* `ctrl+f` - 16 lines down
+* `ctrl+u` - 8 lines up
+* `ctrl+d` - 8 lines down
+* `1` or `H` - go to top
+* `G` or `L` - go to bottom
+* `o` - unfold
+* `J` - fold 
+* `%` - togge between the last and first sibling
 
+# ETC (to review)
 #### File node mappings
 * `<Enter>` - open file
 * `go` - preview file
@@ -23,13 +34,7 @@ Currently supported Visual Studio versions are 2017, 2019, and 2022.
 * `s` - open vertical split
 
 #### Tree navigation mappings
-* `P` - go to parent
-* `j` - go to next sibling
-* `J` - go to last child
-* `k` - go to prev sibling
-* `K` - go to first child
 * `gg` - go to top
-* `G` - go to bottom
 
 #### Node editing mappings
 * `dd` - delete 
